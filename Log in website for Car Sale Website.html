@@ -55,7 +55,42 @@
             margin-bottom: 18px;
         }
 
-        
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            color:black;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        /* style of form label */
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #d9d9d9;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        /* style of form input*/
+
+        .error-tip {
+            display: block;
+            color:red;
+            font-size: 12px;
+            margin-top: 4px;
+            min-height: 16px;
+        }
+         /* style of error feedback */
+
+         .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+
+
 
 
     </style>
@@ -77,14 +112,47 @@
                 <input type="text" id="name" name="name" required placeholder="Please type your name（alphabetical letters and space only）">
                 <span class="error-tip" id="nameError"></span>
             </div>
-             <!-- name input module -->
+             <!-- name input -->
 
             <div class="form-group">
                 <label for="address">地址</label>
                 <input type="text" id="address" name="address" required placeholder="Please type your address（alphanumeric characters and space only）">
                 <span class="error-tip" id="addressError"></span>
             </div>
-            <!-- addressd input module -->
+            <!-- addressd input -->
+
+            <div class="form-group">
+                <label for="phone">Phone number</label>
+                <input type="tel" id="phone" name="phone" required placeholder="Please type your 11 digits Chinese phone number">
+                <span class="error-tip" id="phoneError"></span>
+            </div> 
+            <!--phone number -->
+
+            <div class="form-group">
+                <label for="email">Emial address</address></label>
+                <input type="email" id="email" name="email" required placeholder="Please type your email address (must must end either .cn, and .com and must contain the character @ exactly once.)">
+                <span class="error-tip" id="emailError"></span>
+            </div>
+            <!-- email address -->
+
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required placeholder="You shall type at least 6 alphanumeric characters and alphanumeric characters only">
+                <span class="error-tip" id="usernameError"></span>
+            </div>
+             <!-- username -->
+
+             <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required placeholder="You shall type at least 6 alphanumeric characters and alphanumeric characters only">
+                <span class="error-tip" id="passwordError"></span>
+            </div>
+             <!-- password -->
+
+
+
+
+
 
 
 
