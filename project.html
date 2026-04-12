@@ -13,6 +13,7 @@
     {
       background: transparent;
     }
+
     .search 
     {
       width:100%;
@@ -24,7 +25,8 @@
     }
     .input
     {
-      width:400px;
+      width:30%;
+      min-width:250px;
       padding:10px 15px;
       border:1px solid #ddd;
       border-radius:24px;
@@ -47,41 +49,45 @@
     }
     .box
     {
+      width:80%;
+      margin:0 auto;
       display:flex;
       justify-content:space-between;
       height:200px
     }
     .news
     {
-      margin:10px auto;
-      width:500px;
+      margin:30px auto;
+      width:45%;
       height:200px;
       background-color: transparent;
     }
     .box1
     {
-      margin-top:10px;
-      margin-right: 35px;
-      margin-left: 10px;
-      display:flex;
-      flex-wrap: wrap;
-      justify-content:space-between;
-      height:600px;
+      width:80%;
+      margin:20px auto;
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      grid-template-rows:auto auto;
+      gap:20px;
+      justify-items:center;
       background-color: transparent;
+      height:600px;
     }
     .car img
     {
-      width: 180px;
-      height: 180px;
+      width:160px;
+      height:160px;
       object-fit: contain;
-      margin-left:40px;
+      margin:0 auto;
     }
     .car p
     {
-      margin-left: 110px;
-      font-size: 16px;
-      font-weight: 500;
-      color: #ffffff;
+      margin-left:0;
+      font-size:16px;
+      font-weight:500;
+      color:#ffffff;
+      text-align:center;
     }
     a
     {
@@ -119,7 +125,7 @@
     </h6>
     <div>
       <ul>
-        <li><a href="https://www.bmw.com/en/model/3-series.html" target="_blank">BMW 3 Series</a ></li>
+        <li><a href=" " target="_blank">BMW 3 Series</a ></li>
         <li><a href="https://www.mercedes-benz.com/en/passengercars/models/c-class/" target="_blank">Benz C-Class</a ></li>
         <li><a href="https://www.audi.com/en/models/a4/a4-limousine.html" target="_blank">Audi A4</a ></li>
         <li><a href="https://www.tesla.com/model3" target="_blank">Tesla Model 3</a ></li>
@@ -130,12 +136,12 @@
     </div>
   </div>
   <div class="news">
-    <h6>
+    <h6 style="color:white;">
       Hot News
     </h6>
     <div>
       <ul>
-        <li><a href="https://www.autonews.com" target="_blank">Global Auto Sales Report</a></li>
+        <li><a href="https://www.autonews.com" target="_blank">Global Auto Sales Report</a ></li>
         <li><a href="https://www.epa.gov/regulations-emissions-vehicles-and-engines" target="_blank">EV Policy Update</a ></li>
         <li><a href="https://www.bmw.com/en/topics/electric/electric-cars.html" target="_blank">BMW Electric SUV</a ></li>
         <li><a href="https://www.tesla.com/blog" target="_blank">Tesla Autopilot Upgrade</a ></li>
@@ -151,59 +157,66 @@
     <a href="https://www.bmw.com" target="_blank">
     <img src="BMW.png" alt="BMW">
     <p>BMW</p >
+    </a >
   </div>
   <div class="car">
     <a href="https://www.mercedes-benz.de" target="_blank">
     <img src="BENZ.png" alt="BENZ">
     <p>BENZ</p >
+    </a >
   </div>
   <div class="car">
     <a href="https://www.audi.com" target="_blank">
     <img src="AODI.png" alt="AODI">
     <p>AODI</p >
+    </a >
   </div>
   <div class="car">
     <a href="https://www.porsche.com" target="_blank">
     <img src="PORSCHE.png" alt="PORSCHE">
     <p>PORSCHE</p >
+    </a >
   </div>
   <div class="car">
     <a href="https://www.vw.com" target="_blank">
     <img src="VW.png" alt="VW">
     <p>VW</p >
+    </a >
   </div>
-  <br>
+
   <div class="car">
     <a href="https://www.ferrari.com" target="_blank">
     <img src="FERRARI.png" alt="FERRARI">
     <p>FERRARI</p >
+    </a >
   </div>
   <div class="car">
     <a href="https://www.byd.com" target="_blank">
     <img src="BYD.png" alt="BYD">
     <p>BYD</p >
+    </a >
   </div>
   <div class="car">
     <a href="https://www.ford.com" target="_blank">
     <img src="FORD.png" alt="FORD">
     <p>FORD</p >
+    </a >
   </div>
   <div class="car">
     <a href="https://www.tesla.com" target="_blank">
     <img src="TESLA.png" alt="TESLA">
     <p>TESLA</p >
+    </a >
   </div>
   <div class="car">
     <a href="https://global.honda/en/" target="_blank">
     <img src="HONDA.png" alt="HONDA">
     <p>HONDA</p >
+    </a >
   </div>
 </div>
 <div class="video-bg">
-     <video src="bg - Trim.mp4" muted loop playsinline autoplay></video>
-</div>
-</body>
-</html>
+<video src="bg - Trim.mp4" muted loop autoplay playsinline></video>
 </div>
 </body>
 </html>
