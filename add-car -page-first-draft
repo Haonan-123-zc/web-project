@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Car - Online Car Sale</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px;
+            margin: 40px auto; padding: 20px; }
+        .form-group {margin-bottom: 20px;}
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        
+        input[type="text"], input[type="file"] 
+        {
+            width: 100%; padding: 8px;
+            box-sizing: border-box; 
+        }
+        .error-message {
+            color: red; font-size: 0.85em; display: none; margin-top: 5px; }
+        button 
+        {
+            padding: 10px 20px;
+            background-color: #0056b3;
+            color: white; border: none; cursor: pointer;
+        }
+        button:hover {background-color: #004494;}
+    </style>
+</head>
+<body>
+
+    <h2>Add a New Car</h2>
+    <form id="addCarForm">
+        <div class="form-group">
+            <label for="carColour">Colour:</label>
+            <input type="text" id="carColour" name="colour" placeholder="e.g. Red">
+                <div id="colourError" class="error-message">Colour must contain only letters.</div>
+        </div>
+        <div class="form-group">
+            <label for="carModel">Model:</label>
+            <input type="text" id="carModel" name="model" placeholder="e.g. Toyota Camry">
+            <div id="modelError" class="error-message">Model cannot be empty and must be alphanumeric.</div>
+        </div>
+        <div class="form-group">
+            <label for="carYear">Year:</label>
+            <input type="text" id="carYear" name="year" placeholder="e.g. 2021">
+                <div id="yearError" class="error-message">Year must be a 4-digit number.</div>
+        </div>
+        <div class="form-group">
+            <label for="carLocation">Location:</label>
+            <input type="text" id="carLocation" name="location" placeholder="e.g. Beijing">
+                <div id="locationError" class="error-message">Location cannot be empty.</div>
+        </div>
+        <div class="form-group">
+            <label for="carPrice">Price:</label>
+            <input type="text" id="carPrice" name="price" placeholder="e.g. 15000 or 15000.50">
+                <div id="priceError" class="error-message">Price must be a valid number.</div>
+        </div>
+        
+        <div class="form-group">
+        <label for="carImage">Image of car:</label>
+        <input type="file" id="carImage" name="image" accept="image/*">
+        </div>
+        <button type="submit">Submit Car Listing</button>
+    </form>
+
+    <script>
+        document.getElementById('addCarForm').addEventListener('submit', function(event) 
+        {
+            event.preventDefault(); 
+            let isFormValid = 1;
+
+            let colourInput = document.getElementById('carColour').value; let colourRegex = /^[A-Za-z\s]+$/;
+            if (!colourRegex.test(colourInput)) 
+            {
+                document.getElementById('colourError').style.display = 'block';
+                isFormValid = 0;
+            } else {
+                document.getElementById('colourError').style.display = 'none';
+            }
+            
+            let modelInput = document.getElementById('carModel').value; let modelRegex = /^[A-Za-z0-9\s]+$/;
+            if (!modelRegex.test(modelInput)) {
+                document.getElementById('modelError').style.display = 'block';
+                isFormValid = 0;
+            } 
+            else 
+            {
+                document.getElementById('modelError').style.display = 'none';
+            }
+            let yearInput = document.getElementById('carYear').value; let yearRegex = /^\d{4}$/;
+            if (!yearRegex.test(yearInput)) {
+                document.getElementById('yearError').style.display = 'block';
+                isFormValid = 0;
+            } else {
+                document.getElementById('yearError').style.display = 'none';
+            }
+
+            let priceInput = document.getElementById('carPrice').value; let priceRegex = /^\d+(\.\d{1,2})?$/;
+            if (!priceRegex.test(priceInput)) {
+                document.getElementById('priceError').style.display = 'block';
+                isFormValid = 0;
+            } 
+            else 
+            {
+                document.getElementById('priceError').style.display = 'none';
+            }
+
+            let locationInput = document.getElementById('carLocation').value;
+            if (locationInput.trim() === "") 
+            {
+                document.getElementById('locationError').style.display = 'block';
+                isFormValid = 0;
+            } else {
+                document.getElementById('locationError').style.display = 'none';
+            }
+
+            if (isFormValid == 1) {
+                alert("Validation successful :)");
+            }
+        });
+    </script>
+</body>
+</html>

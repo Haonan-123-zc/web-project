@@ -1,0 +1,204 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Add Car - Online Car Sale</title>
+                <style>
+                    body, html {
+                        margin: 0;
+                    padding: 0;
+                    width: 100%;
+                    height: 100%;
+                    font-family: Arial, sans-serif;
+                    color: #ffffff;
+                    background-color: #000000; 
+        }
+                    #bg-video
+                    {
+                        position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100vw;
+                    height: 100vh;
+                    object-fit: cover;
+                    z-index: 1;
+                    opacity: 0.6;
+                    pointer-events: none;
+        }
+                    .content-wrapper {
+                        position: relative;
+                    z-index: 10;
+                    max-width: 600px;
+                    margin: 60px auto;
+                    padding: 40px;
+                    background: rgba(0, 0, 0, 0.4);
+                    border-radius: 15px;
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    backdrop-filter: blur(8px);
+                    -webkit-backdrop-filter: blur(8px);
+                    box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.9); 
+        }
+                    .dynamic-title
+                    {
+                        text - align: center;
+                    margin-bottom: 40px;
+                    margin-top: 0;
+                    font-size: 3em;
+                    font-weight: 900;
+                    text-transform: uppercase;
+                    letter-spacing: 2px;
+                    background: linear-gradient(90deg, #00c6ff, #0072ff, #aa00ff, #0072ff, #00c6ff);
+                    background-size: 200% auto;
+                    -webkit-background-clip: text;
+                    background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    color: transparent;
+                    animation: flowText 4s linear infinite;
+                    text-shadow: 0 0 10px rgba(0, 114, 255, 0.3);
+        }
+                    @keyframes flowText {
+                        0 % { background- position: 0% 50%; }
+                    100% {background - position: 100% 50%; }
+        }
+                    .form-group {margin - bottom: 20px;}
+                    label {display: block; margin-bottom: 8px; font-weight: bold; font-size: 0.95em; color: #cccccc;}
+
+                    input[type="text"], input[type="file"]
+                    {
+                        width: 100%;
+                    padding: 12px;
+                    box-sizing: border-box;
+                    background-color: rgba(0, 0, 0, 0.5);
+                    color: #ffffff;
+                    border: 1px solid rgba(255, 255, 255, 0.2);
+                    border-radius: 6px;
+                    transition: border-color 0.3s, box-shadow 0.3s;
+        }
+                    input[type="text"]:focus {
+                        outline: none;
+                    border-color: #00c6ff;
+                    box-shadow: 0 0 8px rgba(0, 198, 255, 0.3); 
+        }
+                    input::placeholder {color: #666666;}
+                    .error-message {color: #ff3333; font-size: 0.85em; display: none; margin-top: 5px; text-shadow: 0 0 5px rgba(255, 0, 0, 0.5); }
+                    button
+                    {
+                        width: 100%;
+                    padding: 14px;
+                    background-color: #0072ff;
+                    color: white;
+                    border: none;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    margin-top: 20px;
+                    font-weight: bold;
+                    font-size: 1.1em;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    transition: background-color 0.3s ease, transform 0.1s ease;
+        }
+                    button:hover {background - color: #00c6ff;}
+                    button:active {transform: scale(0.98);}
+                </style>
+            </head>
+            <body>
+
+                <video autoplay muted loop playsinline id="bg-video">
+                    <source src="background.mp4" type="video/mp4">
+                        Your browser does not support HTML5 video.
+                </video>
+
+                <div class="content-wrapper">
+                    <h2 class="dynamic-title">Add a New Car</h2>
+
+                    <form id="addCarForm">
+                        <div class="form-group">
+                            <label for="carColour">Colour</label>
+                            <input type="text" id="carColour" name="colour" placeholder="e.g. Midnight Black">
+                                <div id="colourError" class="error-message">Colour must contain only letters.</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="carModel">Model</label>
+                            <input type="text" id="carModel" name="model" placeholder="e.g. Tesla Model 3">
+                                <div id="modelError" class="error-message">Model cannot be empty and must be alphanumeric.</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="carYear">Year</label>
+                            <input type="text" id="carYear" name="year" placeholder="e.g. 2023">
+                                <div id="yearError" class="error-message">Year must be a 4-digit number.</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="carLocation">Location</label>
+                            <input type="text" id="carLocation" name="location" placeholder="e.g. Shanghai">
+                                <div id="locationError" class="error-message">Location cannot be empty.</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="carPrice">Price (RMB)</label>
+                            <input type="text" id="carPrice" name="price" placeholder="e.g. 250000">
+                                <div id="priceError" class="error-message">Price must be a valid number.</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="carImage">Upload Car Image</label>
+                            <input type="file" id="carImage" name="image" accept="image/*">
+                        </div>
+
+                        <button type="submit">Submit Listing</button>
+                    </form>
+                </div>
+
+                <script>
+                    document.getElementById('addCarForm').addEventListener('submit', function(event) {
+                        event.preventDefault();
+                    let isFormValid = 1;
+
+                    let colourInput = document.getElementById('carColour').value; let colourRegex = /^[A-Za-z\s]+$/;
+                    if (!colourRegex.test(colourInput))
+                    {
+                        document.getElementById('colourError').style.display = 'block';
+                    isFormValid = 0;
+            } else {
+                        document.getElementById('colourError').style.display = 'none';
+            }
+                    let modelInput = document.getElementById('carModel').value; let modelRegex = /^[A-Za-z0-9\s]+$/;
+                    if (!modelRegex.test(modelInput)) {
+                        document.getElementById('modelError').style.display = 'block';
+                    isFormValid = 0;
+            }
+                    else
+                    {
+                        document.getElementById('modelError').style.display = 'none';
+            }
+                    let yearInput = document.getElementById('carYear').value; let yearRegex = /^\d{4}$/;
+                    if (!yearRegex.test(yearInput))
+                    {
+                        document.getElementById('yearError').style.display = 'block';
+                    isFormValid = 0;
+            } else {
+                        document.getElementById('yearError').style.display = 'none';
+            }
+                    let priceInput = document.getElementById('carPrice').value; let priceRegex = /^\d+(\.\d{1, 2})?$/;
+                    if (!priceRegex.test(priceInput)) {
+                        document.getElementById('priceError').style.display = 'block';
+                    isFormValid = 0;
+            }
+                    else
+                    {
+                        document.getElementById('priceError').style.display = 'none';
+            }
+                    let locationInput = document.getElementById('carLocation').value;
+                    if (locationInput.trim() === "")
+                    {
+                        document.getElementById('locationError').style.display = 'block';
+                    isFormValid = 0;
+            } else {
+                        document.getElementById('locationError').style.display = 'none';
+            }
+
+                    if (isFormValid == 1) {
+                        alert("Submit successful! :)");
+            }
+        });
+                </script>
+            </body>
+        </html>
