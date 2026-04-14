@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>registration</title>
+    <style>
+     body 
+     {
+        margin: 0;
+        width: 100vw;
+        height: 100vh;
+        padding: 0;
+        background: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+     }
+     .video-bg 
+     {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        overflow: hidden;
+     }
+     .video-bg video 
+     {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+     }
+     .login-box 
+     {
+        width: 360px;
+        padding: 30px;
+        background: rgba(92, 87, 87, 0.9);
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(115, 55, 55, 0.2);
+     }
+     .login-box h1 
+     {
+        text-align: center;
+        margin: 20px;
+     }
+     .input-item 
+     {
+        margin-bottom: 15px;
+     }
+     .input-item input 
+     {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+     }
+     .login-btn 
+     {
+        width: 100%;
+        padding: 10px;
+        background: #409eff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+     }
+     #tip, #userTip 
+     {
+        color: red;
+        font-size: 12px;
+        margin-top: 5px;
+     }
+    </style>
+</head>
+<body>
+    <div class="video-bg">
+        <video src="registration-bg.mp4" muted loop autoplay playsinline></video>
+    </div>
+    <div class="login-box">
+        <h1 style="color: #6a697a;">User Login</h1>
+        <div class="input-item">
+            <input type="text" id="username" placeholder="input username pls" oninput="checkUser()">
+            <div id="userTip"></div>
+        </div>
+        <div class="input-item">
+            <input type="password" id="pwd" placeholder="input password pls" oninput="checkPwd()">
+            <div id="tip"></div>
+        </div>
+        <button class="login-btn" onclick="login()">log in</button>
+        <h6><a href="#" target="_blank" style="text-decoration: none; color: aquamarine;">No account? Register here pls</a></h6>
+    </div>
+    <script>
+        function checkUser()
+        {
+            let user=document.getElementById("username").value;
+            let tip=document.getElementById("userTip");
+            const rule=/^[a-zA-Z0-9]{1,12}$/;
+            if(!user){
+                tip.textContent="";
+            }else if(!rule.test(user)){
+                tip.textContent="Max 12 digits, no special characters";
+                tip.style.color="red";
+            }else{
+                tip.textContent="Username valid";
+                tip.style.color="lightgreen";
+            }
+        }
+        function checkPwd()
+        {
+            let pwd=document.getElementById("pwd").value;
+            let tip=document.getElementById("tip");
+            const rule=/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+            if(!pwd){
+                tip.textContent="";
+            }else if(!rule.test(pwd)){
+                tip.textContent="At least 6 digits, include number, uppercase & lowercase";
+                tip.style.color="red";
+            }else{
+                tip.textContent="Password format correct";
+                tip.style.color="lightgreen";
+            }
+        }
+        function login()
+        {
+            let user=document.getElementById("username").value;
+            let pwd=document.getElementById("pwd").value;
+            const userRule=/^[a-zA-Z0-9]{1,12}$/;
+            const pwdRule=/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+            if(!userRule.test(user)){
+                alert("Username: max 12 digits, no special characters");
+                return;
+            }
+            if(!pwdRule.test(pwd)){
+                alert("Password must: ≥6 digits, have number, uppercase & lowercase");
+                return;
+            }
+            alert("Login Success!");
+        }
+    </script>
+</body>
+</html>
