@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Car sale - Log in</title>
+    <title>Car sale - Register</title>
     <style>
         * {
             margin: 0;
@@ -133,20 +133,14 @@
         }
 
         .submit-btn:hover {
-            background-color: dodgerblue;
+            background-color: dodgerblue; 
         }
 
         .submit-btn:disabled {
             background-color: lightgray;
             cursor: not-allowed;
         }
- 
-
-
-
-
     </style>
-
 </head>
 
 <body>
@@ -154,158 +148,203 @@
         <h1>Car sale - Register module</h1>
 
         <div class="tab-container">
-            <button class="tab-btn active" data-type="buyer">Buyer</button>
-            <button class="tab-btn" data-type="seller">Seller</button>
+            <button class="tab-btn active" data-role="buyer">Buyer</button>
+            <button class="tab-btn" data-role="seller">Seller</button> 
         </div>
         <!-- buyer/seller switch button -->
 
-         <div class="form-wrapper">
-             
-            <!-- for buyer-->
-             <form class="register-form active" id="buyerForm">
+        <div class="form-wrapper">
+            <!-- for buyer -->
+            <form class="register-form active" id="buyerForm">
+                <div class="form-group">
+                    <label for="buyer_name">Name</label>
+                    <input type="text" id="buyer_name" name="name" required placeholder="Please type your name">
+                </div>
+                <!-- name input -->
 
-         <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" required placeholder="Please type your name">
-            </div>
-             <!-- name input -->
+                <div class="form-group">
+                    <label for="buyer_address">Address</label>
+                    <input type="text" id="buyer_address" name="address" required placeholder="Please type your address">
+                </div>
+                <!-- addressd input -->
 
-            <div class="form-group">
-                <label for="address">Address</label>
-                <input type="text" id="address" name="address" required placeholder="Please type your address">
-            <!-- addressd input -->
+                <div class="form-group">
+                    <label for="buyer_phone">Phone number</label>
+                    <input type="tel" id="buyer_phone" name="phone" required placeholder="Please type your 11 digits Chinese phone number">
+                </div>
+                <!--phone number -->
 
-            <div class="form-group">
-                <label for="phone">Phone number</label>
-                <input type="tel" id="phone" name="phone" required placeholder="Please type your 11 digits Chinese phone number">
-            </div> 
-            <!--phone number -->
+                <div class="form-group">
+                    <label for="buyer_email">Emial address</label>
+                    <input type="email" id="buyer_email" name="email" required placeholder="Please type your email address">
+                </div>
+                <!-- email address -->
 
-            <div class="form-group">
-                <label for="email">Emial address</address></label>
-                <input type="email" id="email" name="email" required placeholder="Please type your email address">
-            </div>
-            <!-- email address -->
 
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required placeholder="You shall type at least 6 alphanumeric characters ">
-            </div>
-             <!-- username -->
+                <div class="form-group">
+                    <label for="buyer_username">Username</label>
+                    <input type="text" id="buyer_username" name="username" required placeholder="You shall type at least 6 alphanumeric characters ">
+                </div>
+                <!-- username -->
 
-             <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password"  required placeholder="You shall type at least 6 alphanumeric characters">
-            </div>
-             <!-- password -->
+                <div class="form-group">
+                    <label for="buyer_password">Password</label>
+                    <input type="password" id="buyer_password" name="password"  required placeholder="You shall type at least 6 alphanumeric characters">
+                </div>
+                <!-- password -->
 
-              <div class="form-group">
-                <label for="confirm your password">Confirm your password</label>
-                <input type="password" id="repassword" name="confirm your password" required placeholder="Please type your password again">
-            </div> 
+                <div class="form-group">
+                    <label for="buyer_repassword">Confirm your password</label>
+                    <input type="password" id="buyer_repassword" name="repassword" required placeholder="Please type your password again">
+                </div>   
             <!-- confirm password -->
+
                 <button type="submit" class="submit-btn">You have finished registration</button>
             </form>
 
-             <form class="register-form" id="sellerForm">
-                 <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" required placeholder="Please type your name">
-            </div>
-             <!-- name input -->
+            <!-- for seller -->
+            <form class="register-form" id="sellerForm">
+                <div class="form-group">
+                    <label for="seller_name">Name</label>
+                    <input type="text" id="seller_name" name="name" required placeholder="Please type your name">
+                </div>
 
-            <div class="form-group">
-                <label for="address">Address</label>
-                <input type="text" id="address" name="address" required placeholder="Please type your address">
-            <!-- addressd input -->
+                <div class="form-group">
+                    <label for="seller_address">Address</label>
+                    <input type="text" id="seller_address" name="address" required placeholder="Please type your address">
+                </div>
 
-            <div class="form-group">
-                <label for="phone">Phone number</label>
-                <input type="tel" id="phone" name="phone" required placeholder="Please type your 11 digits Chinese phone number">
-            </div> 
-            <!--phone number -->
+                <div class="form-group">
+                    <label for="seller_phone">Phone number</label>
+                    <input type="tel" id="seller_phone" name="phone" required placeholder="Please type your 11 digits Chinese phone number">
+                </div>
 
-            <div class="form-group">
-                <label for="email">Emial address</address></label>
-                <input type="email" id="email" name="email" required placeholder="Please type your email address">
-            </div>
-            <!-- email address -->
+                <div class="form-group">
+                    <label for="seller_email">Email address</label>
+                    <input type="email" id="seller_email" name="email" required placeholder="Please type your email address">
+                </div>
 
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required placeholder="You shall type at least 6 alphanumeric characters ">
-            </div>
-             <!-- username -->
+                <div class="form-group">
+                    <label for="seller_username">Username</label>
+                    <input type="text" id="seller_username" name="username" required placeholder="You shall type at least 6 alphanumeric characters ">
+                </div>
 
-             <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password"  required placeholder="You shall type at least 6 alphanumeric characters">
-            </div>
-             <!-- password -->
+                <div class="form-group">
+                    <label for="seller_password">Password</label>
+                    <input type="password" id="seller_password" name="password"  required placeholder="You shall type at least 6 alphanumeric characters">
+                </div>
 
-              <div class="form-group">
-                <label for="confirm your password">Confirm your password</label>
-                <input type="password" id="repassword" name="confirm your password" required placeholder="Please type your password again">
-            </div> 
-            <!-- confirm password -->
+                <div class="form-group">
+                    <label for="seller_repassword">Confirm your password</label>
+                    <input type="password" id="seller_repassword" name="repassword" required placeholder="Please type your password again">
+                </div>
+
                 <button type="submit" class="submit-btn">You have finished registration</button>
-             </form>
-         </div>
+            </form>
+        </div>
     </div>
 
-             <script>
-                
-                 function initPageEvents() {
-           // buyer/seller switch
+    <script>
+        //initializing events
+        function initPageEvents() {
+            // buyer/seller switch
             const tabBtns = document.querySelectorAll('.tab-btn');
             tabBtns.forEach(btn => {
                 btn.addEventListener('click', function() {
+                
                     tabBtns.forEach(b => b.classList.remove('active'));
+                    // add active to button clicked
                     this.classList.add('active');
-                    //switch label form
+                    // get role
                     const role = this.dataset.role;
+                    // hide all forms
                     document.querySelectorAll('.register-form').forEach(form => {
                         form.classList.remove('active');
-                        //switch label demonstration
                     });
-                    document.getElementById(`${role}Form`).classList.add('active');
-                    
+                    // demonstrate role
+                    const targetForm = document.getElementById(`${role}Form`);
+                    if (targetForm) {
+                        targetForm.classList.add('active');
+                    }
                 });
             });
-    
+
+           
             document.getElementById('buyerForm').addEventListener('submit', function(e) {
                 handleFormSubmit(e, 'buyer');
             });
-            //submit function for buyer
             document.getElementById('sellerForm').addEventListener('submit', function(e) {
                 handleFormSubmit(e, 'seller');
             });
-            //submit function for seller
-
         }
 
+        // form validating module
+        function validateForm(formData, role) {
+            // validate password
+            if (formData.password !== formData.repassword) {
+                alert('The password you type differs from the original!');
+                return false;
+            }
 
-             
-             
-             
-             
-             
-             
-             </script>
+            
+            const pwd = formData.password;
+            const isSafe = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/.test(pwd); 
+            if (!isSafe) {
+                alert('Password must contain at least 6 alphanumeric characters');
+                return false;
+            }
 
+            const phoneReg = /^1[3-9]\d{9}$/;
+            if (!phoneReg.test(formData.phone)) {
+                alert('Please type valid Chinese phone number！');
+                return false;
+            }
 
+            return true;
+        }
 
+        // form submitting
+        async function handleFormSubmit(e, role) {
+            e.preventDefault(); 
+            const form = document.getElementById(`${role}Form`);
+            const submitBtn = form.querySelector('.submit-btn');
+            
+            // avoid submitting twice
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Registering...';
 
+            // collect form data
+            const formData = new FormData(form);
+            const userData = {};
+            formData.forEach((value, key) => {
+                userData[key] = value;
+            });
 
+            // 验证表单
+            const isValid = validateForm(userData, role);
+            if (!isValid) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'You have finished registration';
+                return;
+            }
 
-
-
-
+            // stimulate making a request to the back end
+            try {
+                alert(`✅ ${role} registration success!`);
+                form.reset(); // 重置表单
+            } catch (error) {
+                alert('❌ Registration failed!');
+                console.error('Registration error:', error);
+            } finally {
+               
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'You have finished registration';
+            }
+        }
+        
+        window.onload = function() {
+            initPageEvents();
+        }
+    </script>
 </body>
-
-
-
-
-
-
 </html>
