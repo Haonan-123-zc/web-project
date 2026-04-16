@@ -1,0 +1,310 @@
+﻿< !DOCTYPE html >
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Welcome to Online Car Sale</title>
+
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+
+                    <style>
+        /* =========================================
+                        1. 全局导航栏
+                        ========================================= */
+                        .global-header {
+                            position: fixed;
+                        top: 0; left: 0; width: 100%;
+                        background-color: #111;
+                        color: white;
+                        padding: 15px 40px;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        z-index: 1000;
+                        box-sizing: border-box;
+        }
+                        .brand-link {display: flex; align-items: center; text-decoration: none; color: white; }
+                        .logo-text {
+                            width: 40px; height: 40px; background-color: white; color: #111;
+                        display: flex; align-items: center; justify-content: center;
+                        font-weight: bold; border-radius: 50%; font-size: 14px;
+        }
+                        .header-title {margin: 0 0 0 15px; font-size: 24px; font-weight: bold; }
+                        .global-header nav a {color: white; text-decoration: none; margin-left: 20px; font-weight: bold; font-size: 16px; }
+                        .global-header nav a:hover {text - decoration: underline; }
+
+                        /* =========================================
+                           2. 页面基础布局
+                           ========================================= */
+                        html, body {
+                            margin: 0; padding: 0; height: 100%;
+                        background-color: #050505;
+                        font-family: "Segoe UI", sans-serif;
+                        overflow: hidden;
+        }
+
+                        #bubble-canvas-container {
+                            position: fixed;
+                        top: 0; left: 0; width: 100%; height: 100%;
+                        z-index: 0;
+                        background: radial-gradient(circle at center, #151515 0%, #050505 100%);
+        }
+
+                        .main-swiper {width: 100%; height: 100%; z-index: 1; }
+                        .swiper-slide {
+                            height: 100vh; width: 100%;
+                        display: flex; justify-content: center; align-items: center;
+                        position: relative;
+                        background: transparent;
+        }
+
+                        /* =========================================
+                           3. 第一屏：Hero Section
+                           ========================================= */
+                        .hero-content {text - align: center; color: white; pointer-events: none; }
+                        .company-badge {
+                            width: 120px; height: 120px;
+                        background: rgba(255, 255, 255, 0.05);
+                        border: 1px solid rgba(255, 255, 255, 0.1);
+                        border-radius: 35px;
+                        display: flex; justify-content: center; align-items: center;
+                        font-size: 40px; font-weight: bold;
+                        margin: 0 auto 30px;
+                        backdrop-filter: blur(10px);
+                        color: #1e90ff;
+        }
+                        .hero-title {font - size: 4rem; font-weight: 800; margin-bottom: 10px; }
+                        .hero-subtitle {font - size: 1.1rem; color: #555; letter-spacing: 6px; text-transform: uppercase; }
+
+                        /* =========================================
+                           4. 第二屏：Core Advantages (彻底修复排版)
+                           ========================================= */
+                        .split-layout {
+                            display: flex; align-items: center; justify-content: center;
+                        max-width: 1200px; width: 90%; gap: 60px; 
+        }
+
+                        .layout-left {flex: 1.2; }
+                        .layout-left h2 {
+                            color: #fff; font-size: 3.5rem; margin-bottom: 25px;
+                        position: relative; padding-bottom: 20px;
+        }
+                        .layout-left h2::after {
+                            content: ''; position: absolute; bottom: 0; left: 0;
+                        width: 60px; height: 4px; background: #1e90ff; border-radius: 2px;
+        }
+                        .layout-left p {color: #777; font-size: 1.15rem; line-height: 1.7; max-width: 420px; }
+
+                        .layout-right {
+                            flex: 1;
+                        background: rgba(30, 30, 30, 0.6);
+                        border-radius: 20px; overflow: hidden;
+                        border: 1px solid rgba(255, 255, 255, 0.08);
+                        backdrop-filter: blur(15px);
+                        box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+                        max-width: 500px;
+                        height: fit-content; 
+        }
+                        .nested-swiper {width: 100%; }
+
+                        .card-img {width: 100%; height: 220px; object-fit: cover; }
+
+                        /* 使用 Flexbox 强力居中整个内容区 */
+                        .card-body {
+                            padding: 30px 40px 35px 40px;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center; /* 强力横向居中 */
+                        text-align: center;
+        }
+
+                        .card-header {
+                            width: 100%;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        margin-bottom: 20px; 
+        }
+
+                        .card-header h3 {
+                            flex: 1;
+                        color: #fff;
+                        font-size: 1.5rem;
+                        margin: 0;
+                        font-weight: 600;
+                        text-align: center; 
+        }
+
+                        .nav-arrow {
+                            width: 30px;
+                        color: #555;
+                        cursor: pointer;
+                        font-size: 24px;
+                        transition: 0.3s;
+                        user-select: none; 
+        }
+                        .nav-arrow:hover {color: #1e90ff; }
+
+                        /* 彻底抛弃 ul/li，改用纯净的 div 包裹段落 */
+                        .card-text-container {
+                            display: flex;
+                        flex-direction: column;
+                        gap: 12px; /* 控制行间距 */
+                        width: 100%;
+        }
+
+                        .card-desc {
+                            margin: 0;
+                        color: #aaa;
+                        font-size: 1rem;
+                        line-height: 1.5;
+                        text-align: center; /* 绝对居中 */
+        }
+
+                        /* =========================================
+                           5. 第三屏：CTA
+                           ========================================= */
+                        .cta-content {text - align: center; color: white; }
+                        .enter-btn {
+                            display: inline-block; padding: 16px 45px; background: #1e90ff;
+                        color: white; text-decoration: none; border-radius: 50px;
+                        font-weight: bold; font-size: 1.2rem; transition: 0.3s;
+        }
+                        .enter-btn:hover {transform: translateY(-3px); box-shadow: 0 15px 40px rgba(30, 144, 255, 0.4); }
+
+                        .swiper-pagination-bullet {background: #fff; opacity: 0.2; }
+                        .swiper-pagination-bullet-active {background: #1e90ff; opacity: 1; }
+                    </style>
+                </head>
+                <body>
+
+                    <header class="global-header">
+                        <a href="index.html" class="brand-link">
+                            <div class="logo-text">OCS</div>
+                            <div class="header-title">Online Car Sale</div>
+                        </a>
+                        <nav>
+                            <a href="index.html">Home</a>
+                            <a href="seller.html">Seller</a>
+                            <a href="search.html">Search</a>
+                            <a href="login.html">Login</a>
+                        </nav>
+                    </header>
+
+                    <div id="bubble-canvas-container"></div>
+
+                    <div class="swiper main-swiper">
+                        <div class="swiper-wrapper">
+
+                            <div class="swiper-slide">
+                                <div class="hero-content">
+                                    <div class="company-badge">OCS</div>
+                                    <h1 class="hero-title">OCS — Your Car Assistant</h1>
+                                    <p class="hero-subtitle">Smart Choice • Better Driving</p>
+                                </div>
+                            </div>
+
+                            <div class="swiper-slide">
+                                <div class="split-layout">
+                                    <div class="layout-left">
+                                        <h2>Core Advantages</h2>
+                                        <p>Our sophisticated service system is the cornerstone of OCS, ensuring transparency, professionalism, and absolute trust.</p>
+                                    </div>
+                                    <div class="layout-right">
+                                        <div class="swiper nested-swiper">
+                                            <div class="swiper-wrapper">
+                                                <div class="swiper-slide" style="flex-direction: column; align-items: flex-start;">
+                                                    <img src="https://images.unsplash.com/photo-1560958089-b8a1929cea89?q=80&w=800" class="card-img">
+                                                        <div class="card-body">
+                                                            <div class="card-header">
+                                                                <span class="nav-arrow prev-btn">&lt;</span>
+                                                                <h3>Quality Assurance</h3>
+                                                                <span class="nav-arrow next-btn">&gt;</span>
+                                                            </div>
+                                                            <div class="card-text-container">
+                                                                <p class="card-desc">Rigorous selection avoiding major accident vehicles.</p>
+                                                                <p class="card-desc">150-point professional inspection by experts.</p>
+                                                                <p class="card-desc">Full maintenance records for every listing.</p>
+                                                            </div>
+                                                        </div>
+                                                </div>
+                                                <div class="swiper-slide" style="flex-direction: column; align-items: flex-start;">
+                                                    <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=800" class="card-img">
+                                                        <div class="card-body">
+                                                            <div class="card-header">
+                                                                <span class="nav-arrow prev-btn">&lt;</span>
+                                                                <h3>Secure Trading</h3>
+                                                                <span class="nav-arrow next-btn">&gt;</span>
+                                                            </div>
+                                                            <div class="card-text-container">
+                                                                <p class="card-desc">Third-party escrow for 100% financial safety.</p>
+                                                                <p class="card-desc">Zero hidden fees or mandatory bundle charges.</p>
+                                                                <p class="card-desc">Legal support to protect all transaction parties.</p>
+                                                            </div>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="swiper-slide">
+                                <div class="cta-content">
+                                    <h2 style="font-size: 3rem; margin-bottom: 40px;">Ready to Explore?</h2>
+                                    <a href="index.html" class="enter-btn">Enter Hub</a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+
+                    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+                    <script>
+                        var mainSwiper = new Swiper(".main-swiper", {
+                            direction: "vertical",
+                        freeMode: {enabled: true, sticky: false },
+                        mousewheel: true,
+                        pagination: {el: ".swiper-pagination", clickable: true }
+        });
+
+                        var nestedSwiper = new Swiper(".nested-swiper", {
+                            nested: true,
+                        autoHeight: true,
+                        navigation: {nextEl: ".next-btn", prevEl: ".prev-btn" }
+        });
+
+                        const container = document.getElementById('bubble-canvas-container');
+                        const {Engine, Render, Runner, Bodies, Composite, Mouse, Vector} = Matter;
+                        const engine = Engine.create(); engine.world.gravity.y = 0;
+                        const render = Render.create({
+                            element: container, engine: engine,
+                        options: {width: window.innerWidth, height: window.innerHeight, wireframes: false, background: 'transparent' }
+        });
+                        const bubbles = [];
+                        for (let i = 0; i < 28; i++) {
+            const b = Bodies.circle(Math.random() * window.innerWidth, Math.random() * window.innerHeight, Math.random() * 30 + 15, {
+                            frictionAir: 0.04, restitution: 1,
+                        render: {fillStyle: 'transparent', strokeStyle: 'rgba(255,255,255,0.08)', lineWidth: 1 }
+            });
+                        bubbles.push(b);
+        }
+                        Composite.add(engine.world, bubbles);
+                        const mouse = Mouse.create(render.canvas);
+        Matter.Events.on(engine, 'afterUpdate', () => {
+            if (!mouse.position.x) return;
+            bubbles.forEach(b => {
+                const d = Vector.magnitude(Vector.sub(b.position, mouse.position));
+                        if (d < 200) {
+                    const f = Vector.mult(Vector.normalise(Vector.sub(b.position, mouse.position)), 0.015);
+                        Matter.Body.applyForce(b, b.position, f);
+                }
+            });
+        });
+                        Render.run(render); Runner.run(Runner.create(), engine);
+        window.addEventListener('resize', () => {render.canvas.width = window.innerWidth; render.canvas.height = window.innerHeight; });
+                    </script>
+                </body>
+            </html>
